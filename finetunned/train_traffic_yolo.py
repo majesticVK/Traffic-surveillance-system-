@@ -1,36 +1,3 @@
-"""
-train_traffic_yolo.py
-Fine-tunes YOLOv8 on a traffic dataset for dashcam/road detection.
-
-Supported public datasets (download separately):
-  - VisDrone  : https://github.com/VisDrone/VisDrone-Dataset
-  - COCO traffic subset (cars, trucks, buses, motorcycles, traffic lights)
-  - UA-DETRAC : http://detrac-db.rit.albany.edu/
-
-Dataset folder structure expected:
-  data/
-    images/
-      train/  *.jpg
-      val/    *.jpg
-    labels/
-      train/  *.txt   (YOLO format)
-      val/    *.txt
-  traffic.yaml
-
-traffic.yaml example:
-  path: ./data
-  train: images/train
-  val:   images/val
-  names:
-    0: car
-    1: truck
-    2: bus
-    3: motorcycle
-    4: bicycle
-    5: traffic light
-    6: person
-"""
-
 from ultralytics import YOLO
 
 # =========================
