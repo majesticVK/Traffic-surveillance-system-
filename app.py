@@ -1,14 +1,10 @@
-"""
-app.py — Stable Traffic Surveillance AI (Chat Fixed)
-"""
-
 import streamlit as st
 import cv2
 import time
 import uuid
 import torch
 from datetime import datetime
-
+import numpy as np
 from classification.traffic_detector import TrafficDetector
 from classification.traffic_classifier import TrafficClassifier
 from agents.traffic_agent import TrafficAgent
@@ -159,11 +155,14 @@ if "generating" not in st.session_state:
 # =========================
 st.sidebar.header("Input")
 
-mode = st.sidebar.radio("Source", ["Webcam", "Upload"])
+mode = st.sidebar.radio("Source", ["Webcam", "Video Upload", "Image Upload"])
 
 uploaded_file = None
+uploaded_image = None
 if mode == "Upload":
     uploaded_file = st.sidebar.file_uploader("Upload MP4", type=["mp4"])
+elif mode == "Image Upload":
+    uploaded_image = st.sidebar.file_uploader("Upload Image", type=["jpg", "jpeg", "png"])
 
 run = st.sidebar.toggle("Run", True)
 show_boxes = st.sidebar.toggle("Detections", True)
@@ -288,6 +287,76 @@ with col2:
     st.markdown('</div>', unsafe_allow_html=True)
 
 
+if mode == "Image Upload" and uploaded_image is not None:
+
+    # Read image
+    file_bytes = np.asarray(bytearray(uploaded_image.read()), dtype=np.uint8)
+    frame = cv2.imdecode(file_bytes, 1)
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    # Show original
+    video_box.image(frame_rgb, channels="RGB")
+
+    now = datetime.now()
+
+    # DETECTION
+    detections = detector.detect(frame_rgb)
+    vehicle_count = detector.count_vehicles(detections)
+    lights = detector.get_traffic_lights(detections)
+
+    light_states = {}
+    for i, tl in enumerate(lights):
+        light_states[i] = detector.classify_light_color(frame_rgb, tl)
+
+    dominant_light = "unknown"
+    if light_states:
+        dominant_light = max(set(light_states.values()), key=list(light_states.values()).count)
+
+    obs = {
+        "time": now.strftime("%H:%M"),
+        "vehicle_count": vehicle_count,
+        "light_state": dominant_light,
+        "motion": vehicle_count > 0,
+        "objects": [d["class"] for d in detections],
+        "location": location,
+        "vehicle_in_intersection": False,
+    }
+
+    result = classifier.classify_observation(obs)
+
+    # Show annotated
+    annotated = detector.draw_detections(frame_rgb, detections, light_states)
+    video_box.image(annotated, channels="RGB")
+
+    # Status UI (reuse your glow box)
+    color_map = {
+        "NORMAL": "#00FFA3",
+        "CONGESTED": "#FFD700",
+        "VIOLATION": "#FF4B4B",
+        "HIGH_RISK": "#FF0000",
+    }
+
+    color = color_map.get(result["Status"], "#888")
+
+    status_box.markdown(f"""
+    <div style="
+        padding:12px;
+        border-radius:12px;
+        text-align:center;
+        font-weight:bold;
+        background: rgba(0,0,0,0.4);
+        border: 1px solid {color};
+        color: {color};
+        box-shadow: 0 0 15px {color};
+    ">
+    🖼️ {result['Status']} · {result['Confidence']}
+    <br>
+    <span style="font-size:12px; color:#aaa;">{result['Reason']}</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.stop()  # prevent webcam loop
+
 # =========================
 # MAIN CAMERA LOOP
 # =========================
@@ -381,7 +450,7 @@ status_box.markdown(f"""
     # EVENT LOG (throttled — one event per 10 s per status level)
 if result["Status"] in ("CONGESTED", "VIOLATION", "HIGH_RISK"):
         last_t = st.session_state.get("last_event_time")
-        if not last_t or (now - last_t).seconds >= 10:
+if not last_t or (now - last_t).seconds >= 10:
             event = TrafficEvent(
                 id=str(uuid.uuid4()),
                 timestamp=now,
