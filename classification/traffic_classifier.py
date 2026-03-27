@@ -1,8 +1,3 @@
-"""
-traffic_classifier.py
-Rule-based scoring for traffic observations.
-Produces status: NORMAL / CONGESTED / VIOLATION / HIGH_RISK
-"""
 import config
 
 
