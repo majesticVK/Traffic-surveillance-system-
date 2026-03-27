@@ -68,10 +68,10 @@ Yes, it’s heavy. You signed up for AI, not minimalism.
 Open:
 ``` http://localhost:8501```
 
-####  Input Modes
+##  Input Modes
 ####  Webcam Mode → Live monitoring
 ####  Upload Mode → Analyze MP4 videos
-
+####  Upload img → Analyze images jpg
 
 ## How It Works
 1. ###  Detection
@@ -89,9 +89,10 @@ Open:
    CONGESTED
    VIOLATION
    HIGH_RISK
+   
    <p align="center">
-  <img src="images/Screenshot_2026-03-28_015812.png
-   " width="700"/>
+     <img src="images/Screenshot_2026-03-28_015812.png
+   "width="700"/>
    </p>
 
    
@@ -107,18 +108,17 @@ Open:
 6. ###  UI Layer
    Streamlit integrates everything into a dashboard
 
-   
-
-8. ### Training
+7. ### Training
    YOLOv8 Fine-tuning
    python training/train_traffic_yolo.py
 
-## Update:
+   ![Output](images/Video_Project_1.gif)
 
+
+## Update:
 ```YOLO_TRAFFIC_MODEL = "path/to/best.pt"```
 
 ## LLM Fine-tuning (LoRA)
-
 ```
 python training/prep_traffic_dataset.py --synthetic 20000
 python training/lora_finetune_traffic.py
@@ -163,8 +163,13 @@ Streamlit
 4. Edge deployment (Jetson / Raspberry Pi)
 5. Mobile app
 
-## video 
-https://youtu.be/pKhUgvkJ9yM
+## Link
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=pKhUgvkJ9yM">
+    <img src="https://img.youtube.com/vi/pKhUgvkJ9yM/0.jpg" width="700"/>
+  </a>
+</p>
+https://www.youtube.com/watch?v=pKhUgvkJ9yM 
 
 ## Author
 
