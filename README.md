@@ -78,7 +78,9 @@ Open:
    Finetunned - YOLOv8 detects:
    Vehicles
    Traffic lights
-![Detection](images/detection.png)
+<p align="center">
+  <img src="images/Screenshot_2026-03-28_015812.png" width="700"/>
+</p>
 
 2. ### Classification
    Rules determine:
