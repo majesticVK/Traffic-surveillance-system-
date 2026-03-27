@@ -1,8 +1,3 @@
-"""
-traffic_detector.py
-YOLOv8-based detector specialised for traffic scenes.
-Detects vehicles, traffic lights, and extracts plate regions.
-"""
 from ultralytics import YOLO
 import cv2
 import numpy as np
