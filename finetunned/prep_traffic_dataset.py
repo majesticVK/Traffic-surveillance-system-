@@ -1,8 +1,3 @@
-"""
-prep_traffic_dataset.py
-Generates synthetic traffic Q&A data for LoRA fine-tuning.
-Also converts real EventMemory logs to training samples.
-"""
 import json
 import random
 import argparse
