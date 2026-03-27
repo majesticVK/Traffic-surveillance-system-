@@ -1,7 +1,3 @@
-"""
-lora_finetune_traffic.py
-Fine-tunes TinyLlama on traffic Q&A using LoRA — same pattern as kitchen version.
-"""
 import torch
 import json
 from datasets import Dataset
