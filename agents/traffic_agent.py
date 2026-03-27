@@ -1,7 +1,3 @@
-"""
-traffic_agent.py
-Wraps EventMemory + LLM for the chat interface.
-"""
 from memory.event_memory import TrafficEventMemory
 import config
 
