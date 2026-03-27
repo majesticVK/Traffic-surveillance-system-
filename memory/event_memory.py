@@ -1,6 +1,3 @@
-"""
-event_memory.py — reused from kitchen system, traffic-adapted fields.
-"""
 import json
 from datetime import datetime, timedelta
 from typing import List, Optional
