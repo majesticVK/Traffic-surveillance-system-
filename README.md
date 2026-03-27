@@ -79,10 +79,15 @@ Open:
    Vehicles
    Traffic lights
    <p align="center">
-  <img src="images/Screenshot_2026-03-28_020119.png
+  <img src="images/raw.png
    " width="700"/>
    </p>
-
+   
+   <p align="center">
+     <img src="images/rawd.png
+   "width="700"/>
+   </p>
+   
 2. ### Classification
    Rules determine:
    NORMAL
@@ -91,7 +96,7 @@ Open:
    HIGH_RISK
    
    <p align="center">
-     <img src="images/Screenshot_2026-03-28_015812.png
+     <img src="images/detection.png
    "width="700"/>
    </p>
 
@@ -112,7 +117,7 @@ Open:
    YOLOv8 Fine-tuning
    python training/train_traffic_yolo.py
 
-   ![Output](images/Video_Project_1.gif)
+   ![Output](images/VideoProject1.gif)
 
 
 ## Update:
