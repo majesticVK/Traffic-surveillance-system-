@@ -78,9 +78,10 @@ Open:
    Finetunned - YOLOv8 detects:
    Vehicles
    Traffic lights
-<p align="center">
-  <img src="images/Screenshot_2026-03-28_015812.png" width="700"/>
-</p>
+   <p align="center">
+  <img src="images/Screenshot_2026-03-28_020119.png
+   " width="700"/>
+   </p>
 
 2. ### Classification
    Rules determine:
@@ -88,20 +89,25 @@ Open:
    CONGESTED
    VIOLATION
    HIGH_RISK
+   <p align="center">
+  <img src="images/Screenshot_2026-03-28_020119.png
+   " width="700"/>
+   </p>
+
    
-3. ###  Memory System
+4. ###  Memory System
    Stores traffic events for context-aware reasoning
 
-4. ###  AI Assistant
+5. ###  AI Assistant
    TinyLlama + LoRA generates:
    Insights
    Explanations
    Responses
 
-5. ###  UI Layer
+6. ###  UI Layer
    Streamlit integrates everything into a dashboard
 
-6. ### Training
+7. ### Training
    YOLOv8 Fine-tuning
    python training/train_traffic_yolo.py
 
