@@ -90,7 +90,7 @@ Open:
    VIOLATION
    HIGH_RISK
    <p align="center">
-  <img src="images/Screenshot_2026-03-28_020119.png
+  <img src="images/Screenshot_2026-03-28_015812.png
    " width="700"/>
    </p>
 
@@ -107,7 +107,9 @@ Open:
 6. ###  UI Layer
    Streamlit integrates everything into a dashboard
 
-7. ### Training
+   
+
+8. ### Training
    YOLOv8 Fine-tuning
    python training/train_traffic_yolo.py
 
