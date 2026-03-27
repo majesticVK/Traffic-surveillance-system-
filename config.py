@@ -1,6 +1,3 @@
-# config.py — Dashcam / Traffic Surveillance
-
-# Paths
 YOLO_MODEL = "yolov8n.pt"              # base model; fine-tuned weights override this
 YOLO_TRAFFIC_MODEL = "traffic_yolo_finetuned.pt"  # your fine-tuned model (after training)
 EVENT_DB = "traffic_events.json"
