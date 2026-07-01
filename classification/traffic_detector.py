@@ -6,7 +6,7 @@ import config
 
 class TrafficDetector:
     def __init__(self, conf_threshold=0.30):
-        # Load fine-tuned model if available, else fall back to base
+        
         try:
             self.model = YOLO(config.YOLO_TRAFFIC_MODEL)
             print(f"Loaded fine-tuned traffic model: {config.YOLO_TRAFFIC_MODEL}")
